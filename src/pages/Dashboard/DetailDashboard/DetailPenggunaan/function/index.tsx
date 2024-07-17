@@ -5,6 +5,7 @@ import {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {goBack} from '../../../../../utils/Navigation';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {jwtDecode} from 'jwt-decode';
+import { Alert } from 'react-native';
 
 interface IProps {
   dataRouter: TypePenggunaan;
@@ -46,8 +47,25 @@ export const useDetailPenggunaan = (): IProps => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const onPressRemove = () => {
-    handleRemovePenggunaan(dataRouter.IDPenggunaan, true);
-    goBack();
+    Alert.alert(
+      `Hapus tagihan ${dataRouter.IDPenggunaan}`,
+      'Apakah kamu yakin untuk menghapusnya? Jika sudah terhapus, data tidak bisa ditemukan lagi.',
+      [
+        {
+          text: 'Batal',
+          style: 'cancel',
+        },
+        {
+          text: 'Hapus',
+          onPress: () => {
+            handleRemovePenggunaan(dataRouter.IDPenggunaan, true);
+            goBack();
+          },
+          style: 'destructive',
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   const onPressEdit = () => {

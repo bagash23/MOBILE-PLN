@@ -1,14 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Fonts from '../../../../utils/Fonts';
-import {Divider, Gap, HeaderBar} from '../../../../components';
-import {goBack} from '../../../../utils/Navigation';
+import {Divider, Gap, HeaderBar, Loading} from '../../../../components';
+import {goBack, navigate} from '../../../../utils/Navigation';
 import {useDetailTagihan} from './function';
 import moment from 'moment';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DetailTagihan = () => {
-  const {dataRouter, token, onPressRemove} = useDetailTagihan();
+  const {dataRouter, token, onPressRemove, loadingTagihan} = useDetailTagihan();
   return (
     <View style={styles.container}>
       <View>
@@ -52,7 +52,9 @@ const DetailTagihan = () => {
         <TouchableOpacity
           style={styles.buttonEdit}
           disabled={dataRouter.Status === 'PAID' ? true : false}
-          onPress={() => {}}>
+          onPress={() =>
+            navigate('DetailPembayaran', {id: dataRouter.IDTagihan})
+          }>
           <Text style={styles.labelEdit}>
             {dataRouter.Status === 'PAID'
               ? 'Pembayaran Selesai!'
@@ -72,6 +74,7 @@ const DetailTagihan = () => {
           </TouchableOpacity>
         )}
       </View>
+      {loadingTagihan && <Loading />}
     </View>
   );
 };
@@ -146,5 +149,5 @@ export const colorTextStatus = (text: string) => ({
   paddingHorizontal: 12,
   paddingVertical: 5,
   borderRadius: 12,
-  width: 100,
+  width: 70,
 });

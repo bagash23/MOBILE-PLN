@@ -4,23 +4,42 @@ import {useEffect, useState} from 'react';
 import {jwtDecode} from 'jwt-decode';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {useDashboard} from '../../../../../domain/usecase/useDashboard';
-import { goBack } from '../../../../../utils/Navigation';
+import {goBack} from '../../../../../utils/Navigation';
+import {Alert} from 'react-native';
 
 interface IProps {
   dataRouter: TypeTagihan;
   token: string;
   onPressRemove: () => void;
+  loadingTagihan: boolean;
 }
 
 export const useDetailTagihan = (): IProps => {
   const router = useRoute();
   const dataRouter: TypeTagihan = router?.params?.data;
   const [token, setToken] = useState<string>('');
-  const {handleRemoveTagihan} = useDashboard();
+  const {handleRemoveTagihan, loadingTagihan} = useDashboard();
 
   const onPressRemove = () => {
-    handleRemoveTagihan(dataRouter.IDTagihan, true);
-    goBack();
+    Alert.alert(
+      `Hapus tagihan ${dataRouter.IDTagihan}`,
+      'Apakah kamu yakin untuk menghapusnya? Jika sudah terhapus, data tidak bisa ditemukan lagi.',
+      [
+        {
+          text: 'Batal',
+          style: 'cancel',
+        },
+        {
+          text: 'Hapus',
+          onPress: () => {
+            handleRemoveTagihan(dataRouter.IDTagihan, true);
+            goBack();
+          },
+          style: 'destructive',
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   const decryptToken = async () => {
@@ -37,6 +56,7 @@ export const useDetailTagihan = (): IProps => {
   return {
     dataRouter,
     token,
-    onPressRemove
+    onPressRemove,
+    loadingTagihan,
   };
 };

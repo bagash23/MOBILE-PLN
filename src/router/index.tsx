@@ -8,6 +8,7 @@ import Fonts from '../utils/Fonts';
 import {
   Dashboard,
   DetailPelanggan,
+  DetailPembayaran,
   DetailPenggunaan,
   DetailTagihan,
 } from '../pages';
@@ -56,6 +57,7 @@ const Router = () => {
       <Stack.Screen name="DetailPenggunaan" component={DetailPenggunaan} />
       <Stack.Screen name="DetailPelanggan" component={DetailPelanggan} />
       <Stack.Screen name="DetailTagihan" component={DetailTagihan} />
+      <Stack.Screen name="DetailPembayaran" component={DetailPembayaran} />
       <Stack.Screen name="MainApp" component={MainApp} />
     </Stack.Navigator>
   );
