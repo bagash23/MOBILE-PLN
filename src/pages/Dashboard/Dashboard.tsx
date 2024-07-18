@@ -9,7 +9,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import {useFunctionDashboard} from './function';
-import {Direct, Divider, Gap, Loading} from '../../components';
+import {Direct, Divider, Gap} from '../../components';
 import Fonts from '../../utils/Fonts';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';

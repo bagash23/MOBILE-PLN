@@ -11,7 +11,12 @@ import {
   DetailPembayaran,
   DetailPenggunaan,
   DetailTagihan,
+  Create,
+  CreatePenggunaan,
+  CreateTarif,
 } from '../pages';
+import {Platform, View} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -22,20 +27,54 @@ const MainApp = () => {
       initialRouteName="Dashboard"
       screenOptions={{
         headerShown: false,
+        tabBarLabelStyle: {
+          color: '#1a94aa',
+          fontFamily: Fonts.fontFamily.medium,
+        },
       }}>
       <Tabs.Screen
         name="Dashboard"
         component={Dashboard}
         options={{
-          tabBarLabel: 'Dashboard',
-          tabBarLabelStyle: {
-            color: '#1a94aa',
-            fontFamily: Fonts.fontFamily.medium,
-          },
-          tabBarIcon: () => (
+          tabBarIcon: ({focused}) => (
             <MaterialCommunityIcons
               name="home-roof"
-              color={'#1a94aa'}
+              color={focused ? '#1a94aa' : 'gray'}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Buat Data"
+        component={Create}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View
+              style={{
+                top: Platform.OS === 'ios' ? -10 : -20,
+                width: Platform.OS === 'ios' ? 50 : 60,
+                height: Platform.OS === 'ios' ? 50 : 60,
+                borderRadius: Platform.OS === 'ios' ? 25 : 30,
+                backgroundColor: 'white',
+              }}>
+              <Icon
+                name="pluscircle"
+                size={Platform.OS === 'ios' ? 50 : 60}
+                color={focused ? '#1a94aa' : 'gray'}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Keluar"
+        component={Dashboard}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <MaterialCommunityIcons
+              name="exit-to-app"
+              color={focused ? '#1a94aa' : 'gray'}
               size={26}
             />
           ),
@@ -58,6 +97,8 @@ const Router = () => {
       <Stack.Screen name="DetailPelanggan" component={DetailPelanggan} />
       <Stack.Screen name="DetailTagihan" component={DetailTagihan} />
       <Stack.Screen name="DetailPembayaran" component={DetailPembayaran} />
+      <Stack.Screen name="CreatePenggunaan" component={CreatePenggunaan} />
+      <Stack.Screen name="CreateTarif" component={CreateTarif} />
       <Stack.Screen name="MainApp" component={MainApp} />
     </Stack.Navigator>
   );
