@@ -41,7 +41,9 @@ const Create = () => {
             color={'#1a94aa'}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.borderModel}>
+        <TouchableOpacity
+          style={styles.borderModel}
+          onPress={() => navigate('CreateTagihan')}>
           <View style={styles.rowContent}>
             <Ionicons name="document-text" size={20} color={'#1a94aa'} />
             <Gap width={10} />
@@ -69,7 +71,9 @@ const Create = () => {
             color={'#1a94aa'}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.borderModel}>
+        <TouchableOpacity
+          style={styles.borderModel}
+          onPress={() => navigate('CreatePembayaran')}>
           <View style={styles.rowContent}>
             <MaterialCommunityIcons name="cash" size={20} color={'#1a94aa'} />
             <Gap width={10} />

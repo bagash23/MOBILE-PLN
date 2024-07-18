@@ -67,13 +67,30 @@ const DetailPembayaran = () => {
         data={dataPembayaran.filter(e => e.IDTagihan === dataRouter)}
         keyExtractor={keyExtractorPembayaran}
         renderItem={({item}) => <RenderItem item={item} />}
+        ListEmptyComponent={() => {
+          return (
+            <View
+              style={{
+                paddingHorizontal: 12,
+                paddingVertical: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={[styles.labelRegular, {textAlign: 'center'}]}>
+                Sepertinya data pembayaran anda belum dibuat
+              </Text>
+            </View>
+          );
+        }}
       />
-      <TouchableOpacity
-        style={styles.buttonEdit}
-        onPress={() => onPressBayar()}>
-        <Text style={styles.labelEdit}>Bayar Sekarang!</Text>
-        <MaterialCommunityIcons name="bank" size={20} color={'white'} />
-      </TouchableOpacity>
+      {dataPembayaran.filter(e => e.IDTagihan === dataRouter).length > 0 && (
+        <TouchableOpacity
+          style={styles.buttonEdit}
+          onPress={() => onPressBayar()}>
+          <Text style={styles.labelEdit}>Bayar Sekarang!</Text>
+          <MaterialCommunityIcons name="bank" size={20} color={'white'} />
+        </TouchableOpacity>
+      )}
       {loadingPembayaran && <Loading />}
     </View>
   );

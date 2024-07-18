@@ -8,7 +8,7 @@ interface IProps {
   isVisible: boolean;
   close: () => void;
   children?: undefined | ReactNode;
-  text: string;
+  text?: string;
 }
 
 const MoalComponent = ({isVisible, close, children, text}: IProps) => {

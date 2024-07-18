@@ -1,7 +1,7 @@
 import {useRoute} from '@react-navigation/native';
 import {usePembayaran} from '../../../../domain/usecase';
 import {useCallback, useEffect} from 'react';
-import { goBack } from '../../../../utils/Navigation';
+import {goBack} from '../../../../utils/Navigation';
 
 export type TypeDataPembayaran = {
   IDPembayaran: string;
@@ -23,7 +23,7 @@ interface IProps {
 
 export const useDetailPembayaran = (): IProps => {
   const router = useRoute();
-  const dataRouter: string = router?.params?.id;
+  const dataRouter: string = router?.params?.id;  
   const {
     loadingPembayaran,
     dataPembayaran,
