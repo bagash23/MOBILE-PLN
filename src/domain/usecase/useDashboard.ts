@@ -10,6 +10,7 @@ import {
   APP_PRIVATE_DELETE_PENGGUNAAN,
   APP_PRIVATE_EDIT_PENGGUNAAN,
   APP_PRIVATE_DELETE_TAGIHAN,
+  APP_PRIVATE_LEVEL,
 } from '@env';
 
 interface IProps {
@@ -55,6 +56,11 @@ interface IProps {
     id: string,
   ) => void;
   handleRemoveTagihan: (id: string, loading: boolean) => void;
+  getLevel: () => void;
+  dataLevel: {
+    IDLevel: string;
+    Level: string;
+  }[];
 }
 
 export const useDashboard = create<IProps>(set => ({
@@ -91,6 +97,12 @@ export const useDashboard = create<IProps>(set => ({
       JumlahMeter: 0,
       Status: '',
       Tahun: 0,
+    },
+  ],
+  dataLevel: [
+    {
+      IDLevel: '',
+      Level: '',
     },
   ],
   async handlePenggunaan(loading) {
@@ -233,6 +245,26 @@ export const useDashboard = create<IProps>(set => ({
       set({loadingTagihan: false});
     } catch (error) {
       set({loadingPenggunaan: false});
+    }
+  },
+  async getLevel() {
+    try {
+      const token = await EncryptedStorage.getItem('token');
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.get(
+        APP_PRIVATE_BASE_URL + APP_PRIVATE_LEVEL,
+        config,
+      );
+      set({
+        dataLevel: response.data.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
   },
 }));

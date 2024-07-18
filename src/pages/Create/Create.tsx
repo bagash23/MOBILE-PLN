@@ -55,7 +55,9 @@ const Create = () => {
             color={'#1a94aa'}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.borderModel}>
+        <TouchableOpacity
+          style={styles.borderModel}
+          onPress={() => navigate('CreatePelanggan')}>
           <View style={styles.rowContent}>
             <MaterialCommunityIcons
               name="account"
@@ -85,7 +87,9 @@ const Create = () => {
             color={'#1a94aa'}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.borderModel}>
+        <TouchableOpacity
+          style={styles.borderModel}
+          onPress={() => navigate('CreateLevel')}>
           <View style={styles.rowContent}>
             <MaterialCommunityIcons
               name="chevron-double-up"
@@ -101,7 +105,9 @@ const Create = () => {
             color={'#1a94aa'}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.borderModel}>
+        <TouchableOpacity
+          style={styles.borderModel}
+          onPress={() => navigate('CreateKaryawan')}>
           <View style={styles.rowContent}>
             <MaterialCommunityIcons
               name="account-hard-hat"

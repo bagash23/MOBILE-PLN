@@ -6,58 +6,41 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {useCreateLevel} from './function';
 import Fonts from '../../../../utils/Fonts';
-import {useCreateTarif} from './function';
 import {Gap, HeaderBar} from '../../../../components';
 import {goBack} from '../../../../utils/Navigation';
 
-const CreateTarif = () => {
-  const {form, setForm, onPressCreate} = useCreateTarif();
+const CreateLevel = () => {
+  const {form, setForm, onPressBuat} = useCreateLevel();
   return (
     <View style={styles.container}>
-      <HeaderBar title="Buat Data Tarif" onPress={() => goBack()} />
+      <HeaderBar title="Buat Data Level" onPress={() => goBack()} />
       <View style={styles.content}>
-        <Text style={styles.labelRegular}>Masukan ID Tarif</Text>
+        <Text style={styles.labelRegular}>Masukan ID LEVEL</Text>
         <Gap height={12} />
         <TextInput
-          value={form.id_tarif}
-          placeholder="Masukan ID Tarif"
+          value={form.id_level}
+          placeholder="ID LEVEL"
           style={styles.inputan}
           placeholderTextColor={'#000'}
-          keyboardType="numeric"
-          editable={false}
+          onChangeText={id_level => setForm({...form, id_level})}
         />
         <Gap height={12} />
-        <Text style={styles.labelRegular}>Masukan Daya</Text>
+        <Text style={styles.labelRegular}>Masukan Level</Text>
         <Gap height={12} />
         <TextInput
-          value={form.daya}
-          placeholder="Masukan Daya"
+          value={form.level}
+          placeholder="LEVEL"
           style={styles.inputan}
           placeholderTextColor={'#000'}
-          onChangeText={daya => setForm({...form, daya})}
-          keyboardType="numeric"
-        />
-        <Gap height={12} />
-        <Text style={styles.labelRegular}>Masukan Tarif KWH</Text>
-        <Gap height={12} />
-        <TextInput
-          value={form.tarif_perkwh}
-          placeholder="Masukan tarif per-kwh"
-          style={styles.inputan}
-          placeholderTextColor={'#000'}
-          onChangeText={tarif_perkwh => setForm({...form, tarif_perkwh})}
-          keyboardType="numeric"
+          onChangeText={level => setForm({...form, level})}
         />
         <Gap height={12} />
         <TouchableOpacity
-          disabled={
-            (form.id_tarif && form.daya && form.tarif_perkwh) === ''
-              ? true
-              : false
-          }
+          disabled={(form.id_level && form.level) === '' ? true : false}
           style={styles.buttonEdit}
-          onPress={onPressCreate}>
+          onPress={onPressBuat}>
           <Text style={styles.labelEdit}>Buat Data</Text>
         </TouchableOpacity>
       </View>
@@ -65,7 +48,7 @@ const CreateTarif = () => {
   );
 };
 
-export default CreateTarif;
+export default CreateLevel;
 export const styles = StyleSheet.create({
   container: {
     flex: 1,

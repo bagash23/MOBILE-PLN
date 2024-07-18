@@ -109,11 +109,11 @@ const CreatePenggunaan = () => {
             <Gap height={12} />
             <TouchableOpacity
               disabled={
-                (form.id_penggunaan ||
-                  form.id_pelanggan ||
-                  form.bulan ||
-                  form.meter_akhir ||
-                  form.tahun ||
+                (form.id_penggunaan &&
+                  form.id_pelanggan &&
+                  form.bulan &&
+                  form.meter_akhir &&
+                  form.tahun &&
                   form.meter_awal) === ''
                   ? true
                   : false

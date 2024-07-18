@@ -56,7 +56,7 @@ const DetailPenggunaan = () => {
           <Divider />
         </View>
       </View>
-      {tokenParse === 'ADM0000' && (
+      {(tokenParse === 'ADM0000' || tokenParse === 'ADM') && (
         <View style={styles.content}>
           <TouchableOpacity
             style={styles.buttonEdit}

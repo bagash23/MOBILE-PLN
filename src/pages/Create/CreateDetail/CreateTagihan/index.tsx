@@ -110,7 +110,7 @@ const CreateTagihan = () => {
           <Gap height={12} />
           <TouchableOpacity
             disabled={
-              (form.id_tagihan || form.id_penggunaan || form.id_pelanggan) ===
+              (form.id_tagihan && form.id_penggunaan && form.id_pelanggan) ===
               ''
                 ? true
                 : false

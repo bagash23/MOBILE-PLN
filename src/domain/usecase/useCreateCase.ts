@@ -7,6 +7,10 @@ import {
   APP_PRIVATE_CREATE_TARIF,
   APP_PRIVATE_CREATE_TAGIHAN,
   APP_PRIVATE_CREATE_PEMBAYARAN,
+  APP_PRIVATE_CREATE_PELANGGAN,
+  APP_PRIVATE_CREATE_LEVEL,
+  APP_PUBLIC_REGISTER,
+  APP_PUBLIC_BASE_URL,
 } from '@env';
 import {useDashboard} from './useDashboard';
 
@@ -46,6 +50,26 @@ interface IProps {
     biaya_admin: number,
     total_bayar: string,
     id_user: string,
+  ) => void;
+
+  handleCreatePelanggan: (
+    id_pelanggan: string,
+    nama_pelanggan: string,
+    username: string,
+    password: string,
+    nomor_kwh: string,
+    alamat: string,
+    id_tarif: string,
+    loading: true,
+  ) => void;
+
+  handleCreateLevel: (id_level: string, level: string) => void;
+  handleCreateKaryawan: (
+    id_user: string,
+    username: string,
+    password: string,
+    nama_admin: string,
+    id_level: string,
   ) => void;
 }
 
@@ -179,6 +203,91 @@ export const useCreateCase = create<IProps>(set => ({
         data,
         config,
       );
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async handleCreatePelanggan(
+    id_pelanggan,
+    nama_pelanggan,
+    username,
+    password,
+    nomor_kwh,
+    alamat,
+    id_tarif,
+    loading,
+  ) {
+    useDashboard.getState().loadingPelanggan = loading;
+    try {
+      const token = await EncryptedStorage.getItem('token');
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const data = {
+        id_pelanggan,
+        nama_pelanggan,
+        username,
+        password,
+        nomor_kwh,
+        alamat,
+        id_tarif,
+      };
+
+      await axios.post(
+        APP_PRIVATE_BASE_URL + APP_PRIVATE_CREATE_PELANGGAN,
+        data,
+        config,
+      );
+    } catch (error) {
+      useDashboard.getState().loadingPelanggan = false;
+    }
+  },
+  async handleCreateLevel(id_level, level) {
+    try {
+      const token = await EncryptedStorage.getItem('token');
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const data = {
+        id_level,
+        level,
+      };
+      await axios.post(
+        APP_PRIVATE_BASE_URL + APP_PRIVATE_CREATE_LEVEL,
+        data,
+        config,
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async handleCreateKaryawan(
+    id_user,
+    username,
+    password,
+    nama_admin,
+    id_level,
+  ) {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const data = {
+        id_user,
+        username,
+        password,
+        nama_admin,
+        id_level,
+      };
+      await axios.post(APP_PUBLIC_BASE_URL + APP_PUBLIC_REGISTER, data, config);
     } catch (error) {
       console.log(error);
     }

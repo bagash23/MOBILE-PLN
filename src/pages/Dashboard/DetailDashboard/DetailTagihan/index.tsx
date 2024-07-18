@@ -63,7 +63,7 @@ const DetailTagihan = () => {
           <MaterialCommunityIcons name="bank" size={20} color={'white'} />
         </TouchableOpacity>
         <Gap height={12} />
-        {token === 'ADM0000' && (
+        {(token === 'ADM0000' || token === 'ADM') && (
           <TouchableOpacity style={styles.buttonHapus} onPress={onPressRemove}>
             <Text style={styles.labelHapus}>Hapus</Text>
             <MaterialCommunityIcons

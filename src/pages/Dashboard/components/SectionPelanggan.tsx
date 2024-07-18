@@ -37,6 +37,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 20,
     justifyContent: 'space-between',
+    marginVertical: 12,
   },
   labelIDPelanggan: {
     color: 'black',

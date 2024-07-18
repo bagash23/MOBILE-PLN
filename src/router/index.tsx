@@ -16,6 +16,9 @@ import {
   CreateTarif,
   CreateTagihan,
   CreatePembayaran,
+  CreatePelanggan,
+  CreateLevel,
+  CreateKaryawan,
 } from '../pages';
 import {Platform, View} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -103,6 +106,9 @@ const Router = () => {
       <Stack.Screen name="CreateTarif" component={CreateTarif} />
       <Stack.Screen name="CreateTagihan" component={CreateTagihan} />
       <Stack.Screen name="CreatePembayaran" component={CreatePembayaran} />
+      <Stack.Screen name="CreatePelanggan" component={CreatePelanggan} />
+      <Stack.Screen name="CreateLevel" component={CreateLevel} />
+      <Stack.Screen name="CreateKaryawan" component={CreateKaryawan} />
       <Stack.Screen name="MainApp" component={MainApp} />
     </Stack.Navigator>
   );
