@@ -49,19 +49,21 @@ const DetailTagihan = () => {
         </View>
       </View>
       <View style={styles.content}>
-        <TouchableOpacity
-          style={styles.buttonEdit}
-          disabled={dataRouter.Status === 'PAID' ? true : false}
-          onPress={() =>
-            navigate('DetailPembayaran', {id: dataRouter.IDTagihan})
-          }>
-          <Text style={styles.labelEdit}>
-            {dataRouter.Status === 'PAID'
-              ? 'Pembayaran Selesai!'
-              : 'Bayar Sekarang!'}
-          </Text>
-          <MaterialCommunityIcons name="bank" size={20} color={'white'} />
-        </TouchableOpacity>
+        {dataRouter.IDPelanggan === token && (
+          <TouchableOpacity
+            style={styles.buttonEdit}
+            disabled={dataRouter.Status === 'PAID' ? true : false}
+            onPress={() =>
+              navigate('DetailPembayaran', {id: dataRouter.IDTagihan})
+            }>
+            <Text style={styles.labelEdit}>
+              {dataRouter.Status === 'PAID'
+                ? 'Pembayaran Selesai!'
+                : 'Bayar Sekarang!'}
+            </Text>
+            <MaterialCommunityIcons name="bank" size={20} color={'white'} />
+          </TouchableOpacity>
+        )}
         <Gap height={12} />
         {(token === 'ADM0000' || token === 'ADM') && (
           <TouchableOpacity style={styles.buttonHapus} onPress={onPressRemove}>

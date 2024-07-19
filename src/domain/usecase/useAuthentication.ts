@@ -42,7 +42,6 @@ export const useAuthentication = create<IProps>(set => ({
         data,
         config,
       );
-      console.log(response.data);
       await EncryptedStorage.setItem('token', response.data.data);
       return {
         success: response.data.meta.status,

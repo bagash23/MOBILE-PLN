@@ -7,122 +7,142 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useCreate} from './function';
 
 const Create = () => {
+  const {id} = useCreate();
   return (
     <View style={styles.container}>
       <HeaderBar title="Buat Data" onPress={() => goBack()} />
       <View style={styles.content}>
-        <TouchableOpacity
-          style={styles.borderModel}
-          onPress={() => navigate('CreatePenggunaan')}>
-          <View style={styles.rowContent}>
-            <Entypo name="bar-graph" size={20} color={'#1a94aa'} />
-            <Gap width={10} />
-            <Text style={styles.labelRegular}>Buat Data Penggunaan</Text>
+        {id === 'ADM0000' || id === 'ADM' ? (
+          <>
+            <TouchableOpacity
+              style={styles.borderModel}
+              onPress={() => navigate('CreatePenggunaan')}>
+              <View style={styles.rowContent}>
+                <Entypo name="bar-graph" size={20} color={'#1a94aa'} />
+                <Gap width={10} />
+                <Text style={styles.labelRegular}>Buat Data Penggunaan</Text>
+              </View>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={20}
+                color={'#1a94aa'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.borderModel}
+              onPress={() => navigate('CreateTarif')}>
+              <View style={styles.rowContent}>
+                <MaterialIcons name="discount" size={20} color={'#1a94aa'} />
+                <Gap width={10} />
+                <Text style={styles.labelRegular}>Buat Data Tarif</Text>
+              </View>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={20}
+                color={'#1a94aa'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.borderModel}
+              onPress={() => navigate('CreateTagihan')}>
+              <View style={styles.rowContent}>
+                <Ionicons name="document-text" size={20} color={'#1a94aa'} />
+                <Gap width={10} />
+                <Text style={styles.labelRegular}>Buat Data Tagihan</Text>
+              </View>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={20}
+                color={'#1a94aa'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.borderModel}
+              onPress={() => navigate('CreatePelanggan')}>
+              <View style={styles.rowContent}>
+                <MaterialCommunityIcons
+                  name="account"
+                  size={20}
+                  color={'#1a94aa'}
+                />
+                <Gap width={10} />
+                <Text style={styles.labelRegular}>Buat Data Pelanggan</Text>
+              </View>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={20}
+                color={'#1a94aa'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.borderModel}
+              onPress={() => navigate('CreatePembayaran')}>
+              <View style={styles.rowContent}>
+                <MaterialCommunityIcons
+                  name="cash"
+                  size={20}
+                  color={'#1a94aa'}
+                />
+                <Gap width={10} />
+                <Text style={styles.labelRegular}>Buat Data Pembayaran</Text>
+              </View>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={20}
+                color={'#1a94aa'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.borderModel}
+              onPress={() => navigate('CreateLevel')}>
+              <View style={styles.rowContent}>
+                <MaterialCommunityIcons
+                  name="chevron-double-up"
+                  size={20}
+                  color={'#1a94aa'}
+                />
+                <Gap width={10} />
+                <Text style={styles.labelRegular}>Buat Data Level</Text>
+              </View>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={20}
+                color={'#1a94aa'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.borderModel}
+              onPress={() => navigate('CreateKaryawan')}>
+              <View style={styles.rowContent}>
+                <MaterialCommunityIcons
+                  name="account-hard-hat"
+                  size={20}
+                  color={'#1a94aa'}
+                />
+                <Gap width={10} />
+                <Text style={styles.labelRegular}>Buat Data Karyawan</Text>
+              </View>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={20}
+                color={'#1a94aa'}
+              />
+            </TouchableOpacity>
+          </>
+        ) : (
+          <View
+            style={[
+              styles.content,
+              {justifyContent: 'center', alignItems: 'center'},
+            ]}>
+            <Text style={styles.labelBold}>
+              Sepertinya anda tidak memiliki akses
+            </Text>
           </View>
-          <MaterialCommunityIcons
-            name="arrow-right"
-            size={20}
-            color={'#1a94aa'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.borderModel}
-          onPress={() => navigate('CreateTarif')}>
-          <View style={styles.rowContent}>
-            <MaterialIcons name="discount" size={20} color={'#1a94aa'} />
-            <Gap width={10} />
-            <Text style={styles.labelRegular}>Buat Data Tarif</Text>
-          </View>
-          <MaterialCommunityIcons
-            name="arrow-right"
-            size={20}
-            color={'#1a94aa'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.borderModel}
-          onPress={() => navigate('CreateTagihan')}>
-          <View style={styles.rowContent}>
-            <Ionicons name="document-text" size={20} color={'#1a94aa'} />
-            <Gap width={10} />
-            <Text style={styles.labelRegular}>Buat Data Tagihan</Text>
-          </View>
-          <MaterialCommunityIcons
-            name="arrow-right"
-            size={20}
-            color={'#1a94aa'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.borderModel}
-          onPress={() => navigate('CreatePelanggan')}>
-          <View style={styles.rowContent}>
-            <MaterialCommunityIcons
-              name="account"
-              size={20}
-              color={'#1a94aa'}
-            />
-            <Gap width={10} />
-            <Text style={styles.labelRegular}>Buat Data Pelanggan</Text>
-          </View>
-          <MaterialCommunityIcons
-            name="arrow-right"
-            size={20}
-            color={'#1a94aa'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.borderModel}
-          onPress={() => navigate('CreatePembayaran')}>
-          <View style={styles.rowContent}>
-            <MaterialCommunityIcons name="cash" size={20} color={'#1a94aa'} />
-            <Gap width={10} />
-            <Text style={styles.labelRegular}>Buat Data Pembayaran</Text>
-          </View>
-          <MaterialCommunityIcons
-            name="arrow-right"
-            size={20}
-            color={'#1a94aa'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.borderModel}
-          onPress={() => navigate('CreateLevel')}>
-          <View style={styles.rowContent}>
-            <MaterialCommunityIcons
-              name="chevron-double-up"
-              size={20}
-              color={'#1a94aa'}
-            />
-            <Gap width={10} />
-            <Text style={styles.labelRegular}>Buat Data Level</Text>
-          </View>
-          <MaterialCommunityIcons
-            name="arrow-right"
-            size={20}
-            color={'#1a94aa'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.borderModel}
-          onPress={() => navigate('CreateKaryawan')}>
-          <View style={styles.rowContent}>
-            <MaterialCommunityIcons
-              name="account-hard-hat"
-              size={20}
-              color={'#1a94aa'}
-            />
-            <Gap width={10} />
-            <Text style={styles.labelRegular}>Buat Data Karyawan</Text>
-          </View>
-          <MaterialCommunityIcons
-            name="arrow-right"
-            size={20}
-            color={'#1a94aa'}
-          />
-        </TouchableOpacity>
+        )}
       </View>
     </View>
   );

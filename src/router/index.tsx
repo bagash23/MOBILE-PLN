@@ -19,12 +19,39 @@ import {
   CreatePelanggan,
   CreateLevel,
   CreateKaryawan,
+  SearchPenggunaan,
+  SearchPelanggan,
+  SearchTagihan,
 } from '../pages';
-import {Platform, View} from 'react-native';
+import {Alert, Platform, View} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import {replace} from '../utils/Navigation';
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
+
+const Logout = () => {
+  Alert.alert(
+    `Keluar Aplikasi PLN`,
+    'Apakah kamu yakin untuk keluar ?',
+    [
+      {
+        text: 'Batal',
+        style: 'cancel',
+      },
+      {
+        text: 'Keluar',
+        onPress: async () => {
+          await EncryptedStorage.removeItem('token');
+          replace('LoginScreen');
+        },
+        style: 'destructive',
+      },
+    ],
+    {cancelable: false},
+  );
+};
 
 const MainApp = () => {
   return (
@@ -83,6 +110,7 @@ const MainApp = () => {
               size={26}
             />
           ),
+          tabBarButton: props => <View {...props} onTouchEnd={Logout} />,
         }}
       />
     </Tabs.Navigator>
@@ -109,6 +137,9 @@ const Router = () => {
       <Stack.Screen name="CreatePelanggan" component={CreatePelanggan} />
       <Stack.Screen name="CreateLevel" component={CreateLevel} />
       <Stack.Screen name="CreateKaryawan" component={CreateKaryawan} />
+      <Stack.Screen name="SearchPenggunaan" component={SearchPenggunaan} />
+      <Stack.Screen name="SearchPelanggan" component={SearchPelanggan} />
+      <Stack.Screen name="SearchTagihan" component={SearchTagihan} />
       <Stack.Screen name="MainApp" component={MainApp} />
     </Stack.Navigator>
   );

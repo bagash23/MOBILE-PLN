@@ -19,6 +19,7 @@ import {ScrollView} from 'react-native';
 import SectionPenggunaan from './components/SectionPenggunaan';
 import SectionPelanggan from './components/SectionPelanggan';
 import SectionTagihan from './components/SectionTagihan';
+import {navigate} from '../../utils/Navigation';
 const Dashboard = () => {
   const {
     dataPenggunaan,
@@ -80,7 +81,11 @@ const Dashboard = () => {
           ListHeaderComponent={() => (
             <View style={styles.contetRowCenter}>
               <Text style={styles.label}>Ringkasan Penggunaan</Text>
-              <Direct text="Lihat Semua" show />
+              <Direct
+                text="Lihat Semua"
+                show
+                onPress={() => navigate('SearchPenggunaan')}
+              />
             </View>
           )}
           ItemSeparatorComponent={() => <Divider />}
@@ -96,7 +101,11 @@ const Dashboard = () => {
           ListHeaderComponent={() => (
             <View style={styles.contetRowCenter}>
               <Text style={styles.label}>Ringkasan Pelanggan</Text>
-              <Direct text="Lihat Semua" show />
+              <Direct
+                text="Lihat Semua"
+                show
+                onPress={() => navigate('SearchPelanggan')}
+              />
             </View>
           )}
           ItemSeparatorComponent={() => <Divider />}
@@ -112,7 +121,11 @@ const Dashboard = () => {
           ListHeaderComponent={() => (
             <View style={styles.contetRowCenter}>
               <Text style={styles.label}>Ringkasan Tagihan</Text>
-              <Direct text="Lihat Semua" show />
+              <Direct
+                text="Lihat Semua"
+                show
+                onPress={() => navigate('SearchTagihan')}
+              />
             </View>
           )}
           ItemSeparatorComponent={() => <Divider />}
